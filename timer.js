@@ -1,7 +1,6 @@
 // 定制一个 setTimeout 方法
 createjs.setTimeout = function(cb, delay) {
-    var timeout = new createjs.Container(); 
-    var tween = createjs.Tween.get(timeout)
+    var tween = createjs.Tween.get({})
         .wait(delay)
         .call(function() {
             cb && cb(); 
@@ -15,12 +14,12 @@ createjs.clearTimeout = function(timeout) {
     createjs.Tween.removeTweens(timeout.target); 
     // 删除实例
     timeout = undefined; 
+    return true; 
 }
 
 // 定制一个 setInterval 方法
 createjs.setInterval = function(cb, delay) {
-    var interval = new createjs.Container(); 
-    var tween = createjs.Tween.get(interval)
+    var tween = createjs.Tween.get({})
         .wait(delay) 
         .call(function() {
             cb && cb(); 
@@ -34,4 +33,5 @@ createjs.clearInterval = function(interval) {
     createjs.Tween.removeTweens(interval.target); 
     // 删除实例
     interval = undefined; 
+    return true; 
 }
